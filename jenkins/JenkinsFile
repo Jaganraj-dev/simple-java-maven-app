@@ -1,1 +1,25 @@
+pipeline {
+    agent any
+    
+    tools {
+        maven 'Maven'
+    }
 
+    stages {
+        stage('git checkout') {
+            steps {
+              git 'https://github.com/Jaganraj-dev/simple-java-maven-app.git'
+            }
+        }
+        stage('maven') {
+            steps{
+                sh 'mvn clean compile package'
+            }
+        }
+        stage('echo') {
+            steps {
+                echo 'completed'
+            }
+        }
+    }
+}
